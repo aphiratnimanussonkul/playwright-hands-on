@@ -2,11 +2,11 @@ import { Locator, Page, expect } from "@playwright/test";
 import ENV from "../env/env.json";
 
 export class HomePage {
-  readonly page: Page;
+  private readonly page: Page;
 
-  readonly userDisplayName: Locator;
-  readonly messageTextArea: Locator;
-  readonly postButton: Locator;
+  private readonly userDisplayName: Locator;
+  private readonly messageTextArea: Locator;
+  private readonly postButton: Locator;
 
   constructor(page: Page) {
     this.page = page;

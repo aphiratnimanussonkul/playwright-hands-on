@@ -14,9 +14,21 @@ test.describe("User login Twittah!", () => {
     });
 
     await test.step("Login with username and password", async () => {
-      await loginPage.fillUsernamePassword();
-      loginPage.clickLoginButton();
+      await loginPage.loginWithCorrectUsernamePassword();
       await homePage.expectToSeeHomePage();
+    });
+  });
+
+  test("User login with incorrect password", async ({ page }) => {
+    const loginPage = new LoginPage(page);
+
+    await test.step("Visit Twittah!", async () => {
+      await loginPage.visitTwittah();
+    });
+
+    await test.step("Login with incorrect password", async () => {
+      await loginPage.loginWithIncorrectPassword();
+      await loginPage.expectToSeeErrorMessageLoginFailed();
     });
   });
 });

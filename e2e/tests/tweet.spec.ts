@@ -12,8 +12,7 @@ test.describe("User tweet", () => {
     });
 
     await test.step("Login with username and password", async () => {
-      await loginPage.fillUsernamePassword();
-      loginPage.clickLoginButton();
+      await loginPage.loginWithCorrectUsernamePassword();
       await homePage.expectToSeeHomePage();
     });
 
