@@ -11,6 +11,7 @@
     "playwright:ui": "yarn playwright --ui",
     "playwright:headed": "yarn playwright --headed",
     "playwright:report": "yarn playwright && npx playwright show-report",
-    "playwright:debug": "yarn playwright --debug"
+    "playwright:debug": "yarn playwright --debug",
+    "playwright:codegen": "npx playwright codegen"
   }
 }
