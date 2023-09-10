@@ -1,6 +1,7 @@
 import test from "@playwright/test";
 import { LoginPage } from "../pages/login";
 import { HomePage } from "../pages/home";
+import { validUser } from "../fixtures/user";
 
 test.describe("User tweet", () => {
   test("User tweet Hello successfully", async ({ page }) => {
@@ -12,8 +13,11 @@ test.describe("User tweet", () => {
     });
 
     await test.step("Login with username and password", async () => {
-      await loginPage.loginWithCorrectUsernamePassword();
-      await homePage.expectToSeeHomePage();
+      await loginPage.loginWithUsernamePassword(
+        validUser.username,
+        validUser.password
+      );
+      await homePage.expectToSeeHomePage(validUser.username);
     });
 
     await test.step("User tweet Hello", async () => {

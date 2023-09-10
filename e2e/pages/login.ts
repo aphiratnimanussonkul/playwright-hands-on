@@ -1,5 +1,5 @@
 import { Locator, Page, expect } from "@playwright/test";
-import ENV from "../env/env.json";
+import { config } from "../fixtures/config";
 
 export class LoginPage {
   private readonly page: Page;
@@ -21,43 +21,30 @@ export class LoginPage {
   }
 
   async visitTwittah() {
-    await this.page.goto(ENV.baseUrl);
+    await this.page.goto(config.baseUrl);
 
     await expect(this.appName).toBeVisible();
     await expect(this.appName).toHaveText("Twittah!");
   }
 
-  private async fillUsernamePassword() {
-    await this.usernameInput.type(ENV.username);
-    await this.passwordInput.type(ENV.password);
+  private async fillUsernamePassword(username: string, password: string) {
+    await this.usernameInput.type(username);
+    await this.passwordInput.type(password);
 
-    await expect(this.usernameInput).toHaveValue(ENV.username);
-    await expect(this.passwordInput).toHaveValue(ENV.password);
+    await expect(this.usernameInput).toHaveValue(username);
+    await expect(this.passwordInput).toHaveValue(password);
   }
 
   private clickLoginButton() {
     this.loginButton.click();
   }
 
-  async loginWithCorrectUsernamePassword() {
-    await this.fillUsernamePassword();
+  async loginWithUsernamePassword(username: string, password: string) {
+    await this.fillUsernamePassword(username, password);
     this.clickLoginButton();
   }
 
-  async loginWithIncorrectPassword() {
-    const incorrectPassword = "12345678";
-    await this.usernameInput.type(ENV.username);
-    await this.passwordInput.type(incorrectPassword);
-
-    await expect(this.usernameInput).toHaveValue(ENV.username);
-    await expect(this.passwordInput).toHaveValue(incorrectPassword);
-
-    this.clickLoginButton();
-  }
-
-  async expectToSeeErrorMessageLoginFailed() {
-    await expect(this.errorMessageText).toHaveText(
-      "ล็อกอินหรือรหัสผ่านไม่ถูกต้อง"
-    );
+  async expectToSeeErrorMessageLoginFailed(message: string) {
+    await expect(this.errorMessageText).toHaveText(message);
   }
 }

@@ -1,5 +1,4 @@
 import { Locator, Page, expect } from "@playwright/test";
-import ENV from "../env/env.json";
 
 export class HomePage {
   private readonly page: Page;
@@ -16,9 +15,9 @@ export class HomePage {
     this.postButton = this.page.getByTestId("post-button");
   }
 
-  async expectToSeeHomePage() {
+  async expectToSeeHomePage(username: string) {
     await expect(this.userDisplayName).toBeVisible();
-    await expect(this.userDisplayName).toHaveText(ENV.username);
+    await expect(this.userDisplayName).toHaveText(username);
   }
 
   async typeTweetMessage(message: string) {
