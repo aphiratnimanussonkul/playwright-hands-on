@@ -13,6 +13,7 @@ test.describe("User login Twittah!", () => {
 
     await test.step("Visit Twittah!", async () => {
       await loginPage.visitTwittah();
+      await loginPage.shouldBeDisplayed();
     });
   });
 

@@ -22,7 +22,9 @@ export class LoginPage {
 
   async visitTwittah() {
     await this.page.goto(config.baseUrl);
+  }
 
+  async shouldBeDisplayed() {
     await expect(this.appName).toBeVisible();
     await expect(this.appName).toHaveText("Twittah!");
   }

@@ -1,0 +1,1 @@
+docker run -it --rm --ipc=host -v .:/app -w /app mcr.microsoft.com/playwright:v1.37.1-jammy sh -c "npm install ; npm ci ; npx playwright test"

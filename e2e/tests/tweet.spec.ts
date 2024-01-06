@@ -10,6 +10,7 @@ test.describe("User tweet", () => {
 
     await test.step("Visit Twittah!", async () => {
       await loginPage.visitTwittah();
+      await loginPage.shouldBeDisplayed();
     });
 
     await test.step("Login with username and password", async () => {
