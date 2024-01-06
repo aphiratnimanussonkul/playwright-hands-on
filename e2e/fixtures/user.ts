@@ -1,13 +1,13 @@
 import { IUser } from "../interfaces/user";
 
 export const validUser: IUser = {
-  username: "atta",
+  username: "aphirat",
   password: "123456",
   errorMessage: "",
 };
 
 const incorrectPasswordUser: IUser = {
-  username: "atta",
+  username: "aphirat",
   password: "12345678",
   errorMessage: "ล็อกอินหรือรหัสผ่านไม่ถูกต้อง",
 };
